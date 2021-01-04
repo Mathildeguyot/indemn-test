@@ -1,0 +1,20 @@
+<h1>C'est ici !</h1>
+
+<!-- <input type="search" id="address-input" placeholder="Where are we going?" /> -->
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  var placesAutocomplete = places({
+    appId: 'plHZBQ5HT29U',
+    apiKey: '3d99a704bfc3a867c4ce7a70a24ba6be',
+    container: document.querySelector('#address-input')
+  });
+</script> -->
+
+
+<%= simple_form_for @deposition, remote: true do |f| %>
+  <%= render "#{@deposition.current_step}_step", f: f %>
+  <%= f.button :submit, "Suivant", name: "next_button" %>
+  <%= f.button :submit, "Retour", name: "back_button" unless @deposition.first_step? %>
+  <%= f.button :submit, "Découvrir mon indemnité" if @deposition.last_step? %>
+<% end %>
